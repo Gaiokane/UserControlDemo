@@ -28,18 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.userControl11 = new UserControlDemo.UserControl1();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.userControl12 = new UserControlDemo.UserControl1();
+            this.userControl11 = new UserControlDemo.UserControl1();
             this.SuspendLayout();
-            // 
-            // userControl11
-            // 
-            this.userControl11.Location = new System.Drawing.Point(71, 68);
-            this.userControl11.Name = "userControl11";
-            this.userControl11.Size = new System.Drawing.Size(298, 151);
-            this.userControl11.TabIndex = 0;
-            this.userControl11.Load += new System.EventHandler(this.userControl11_Load);
             // 
             // button1
             // 
@@ -61,11 +54,42 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // userControl12
+            // 
+            this.userControl12.Location = new System.Drawing.Point(338, 162);
+            this.userControl12.Name = "userControl12";
+            this.userControl12.Size = new System.Drawing.Size(298, 151);
+            this.userControl12.TabIndex = 3;
+            this.userControl12.Txt_btnname = "testname";
+            this.userControl12.Txt_cmbox = new string[] {
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"};
+            this.userControl12.Txt_cmboxselect = null;
+            this.userControl12.Txt_txtbox = null;
+            // 
+            // userControl11
+            // 
+            this.userControl11.Location = new System.Drawing.Point(71, 68);
+            this.userControl11.Name = "userControl11";
+            this.userControl11.Size = new System.Drawing.Size(298, 151);
+            this.userControl11.TabIndex = 0;
+            this.userControl11.Txt_btnname = null;
+            this.userControl11.Txt_cmbox = null;
+            this.userControl11.Txt_cmboxselect = null;
+            this.userControl11.Txt_txtbox = null;
+            this.userControl11.Load += new System.EventHandler(this.userControl11_Load);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.userControl12);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.userControl11);
@@ -82,6 +106,7 @@
         private UserControl1 userControl11;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private UserControl1 userControl12;
     }
 }
 
