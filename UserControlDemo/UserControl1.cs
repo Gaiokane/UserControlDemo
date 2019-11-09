@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace UserControlDemo
 {
@@ -17,79 +18,59 @@ namespace UserControlDemo
             InitializeComponent();
         }
 
+        //要将用户控件用在其他项目上，右键项目->属性->将输出类型改为类库，重新生成一下就可以了
+        //使用时，将输出的dll文件拖动到项目，Windows窗体设计界面左侧工具箱中即可
+
         private string txt_txtbox;
-        private string[] txt_cmbox = null;
+        private string[] cmboxsz = null;
         private string txt_btnname;
-        private string txt_cmboxselect;
 
+        //用户控件在窗体中下方公有变量属性的分类
+        [Category("qk文本框"), Browsable(true), Description("文本框赋值")]
+        //公有变量会显示在用户控件的属性中
+        public string Txt_txtbox
+        {
+            get { return txt_txtbox; }
+            set { txt_txtbox = value; }
+        }
 
-        [Category("自定义11"), Browsable(true), Description("qqq")]
+        [Category("qk下拉框"), Browsable(true), Description("下拉框赋值")]
+        public string[] Cmboxsz
+        {
+            get { return cmboxsz; }
+            set { cmboxsz = value; }
+        }
+
+        [Category("qk按钮"), Browsable(true), Description("按钮名称")]
         public string Txt_btnname
         {
-            get
-            {
-                return txt_btnname;
-            }
-            set
-            {
-                txt_btnname = value;
-                button1.Text = txt_btnname;
-            }
-        }
-
-        public string Txt_txtbox { get { return txt_txtbox; } set { txt_txtbox = value; } }
-        //public string Txt_btnname { get { return txt_btnname; } set { txt_btnname = value; } }
-        public string Txt_cmboxselect { get { return txt_cmboxselect; } set { txt_cmboxselect = value; } }
-
-        public string[] Txt_cmbox
-        {
-            get
-            {
-                return txt_cmbox;
-            }
-            set
-            {
-                txt_cmbox = value;
-                if (txt_cmbox.Length<=0)
-                {
-
-                }
-                else
-                {
-                    MessageBox.Show(txt_cmbox.Length.ToString());
-                    /*
-                    for (int i = 0; i < txt_cmbox.Length; i++)
-                    {
-                        comboBox1.Items.Add(txt_cmbox[i]);
-                    }*/
-                }
-            }
-        }
-
-        private void UserControl1_Load(object sender, EventArgs e)
-        {
-            /*
-            textBox1.Text = txt_txtbox;
-
-            for (int i = 0; i < txt_cmbox.Length; i++)
-            {
-                comboBox1.Items.Add(txt_cmbox[i]);
-            }
-
-            button1.Text = txt_btnname;
-            */
+            get { return txt_btnname; }
+            set { txt_btnname = value; }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            showlabel();
+            label1.Text = textBox1.Text + " " + comboBox1.SelectedItem;
         }
 
-        public void showlabel()
+        public void run()
         {
-            Txt_txtbox = textBox1.Text;
-            txt_cmboxselect = comboBox1.SelectedText;
-            label1.Text = Txt_txtbox + " " + txt_cmboxselect;
+            //赋值给文本框
+            textBox1.Text = txt_txtbox;
+
+            //循环赋值给下拉框
+            if (cmboxsz.Length > 0)
+            {
+                comboBox1.Items.Clear();
+                for (int i = 0; i < cmboxsz.Length; i++)
+                {
+                    comboBox1.Items.Add(cmboxsz[i]);
+                }
+                comboBox1.SelectedIndex = 0;
+            }
+
+            //赋值给按钮
+            button1.Text = txt_btnname;
         }
     }
 }
